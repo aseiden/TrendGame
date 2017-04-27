@@ -13,9 +13,6 @@ appId.apiKey = apiInfo.id;
 let appKey = apiInstance.apiClient.authentications['app_key'];
 appKey.apiKey = apiInfo.key;
 
-console.log(appId.apiKey);
-console.log(appKey.apiKey);
+xdescribe('Aylien API', () => {
 
-// describe('Aylien API', () => {
-
-// });
+});
