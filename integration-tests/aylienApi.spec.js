@@ -1,13 +1,21 @@
-var chai = require('chai');
-var AylienNewsApi = require('aylien-news-api');
+const chai = require('chai');
+const AylienNewsApi = require('aylien-news-api');
 
-var getNews = require('../utilities/aylienApi.js');
+const getNews = require('../utilities/aylienApi.js');
+const apiInfo = require('../lib/env/aylienApiKeys');
 
-var expect = chai.expect;
-var apiInstance = new AylienNewsApi.DefaultApi();
-var appKey = apiInstance.apiClient.authentications['app_key'];
-appKey.apiKey = '';
+const expect = chai.expect;
+const apiInstance = new AylienNewsApi.DefaultApi();
 
-describe('Aylien API', () => {
+let appId = apiInstance.apiClient.authentications['app_id'];
+appId.apiKey = apiInfo.id;
 
-});
+let appKey = apiInstance.apiClient.authentications['app_key'];
+appKey.apiKey = apiInfo.key;
+
+console.log(appId.apiKey);
+console.log(appKey.apiKey);
+
+// describe('Aylien API', () => {
+
+// });
