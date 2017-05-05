@@ -1,6 +1,12 @@
 const formatAylienData = (data) => {
 
-  const dataParsed = data;
+  let dataParsed = {};
+
+  try {
+    dataParsed = JSON.parse(data);
+  } catch (e) {
+    dataParsed = data;
+  }
 
   return dataParsed.stories.map((story) => {
     let formattedStory = {};
