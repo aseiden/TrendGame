@@ -10,8 +10,8 @@ const getStories = (peaks, queryString, callback) => {
 
   // Establish API instance and supply credentials
   const apiInstance = new AylienNewsApi.DefaultApi();
+  
   let apiInfo;
-
   try {
     apiInfo = require('../lib/env/aylienApiKeys');
   } catch (e) {
@@ -26,7 +26,6 @@ const getStories = (peaks, queryString, callback) => {
   }
 
   let appKey = apiInstance.apiClient.authentications['app_key'];
-  // appKey.apiKey = AYLIEN_KEY || apiInfo.key;
   try {
     appKey.apiKey = AYLIEN_KEY;
   } catch (e) {
