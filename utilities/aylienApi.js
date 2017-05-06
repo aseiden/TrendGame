@@ -1,6 +1,7 @@
 const AylienNewsApi = require('aylien-news-api');
 const epoch = require('epoch.js');
 
+const formatStories = require('./aylienApiDataFormatter');
 
 const getStories = (peaks, queryString, callback) => {
 
@@ -41,7 +42,15 @@ const getStories = (peaks, queryString, callback) => {
     'publishedAtEnd': 'NOW', 
   };
 
-  apiInstance.listStories(opts, callback);
+  apiInstance.listStories(opts, (error, data, response) => {
+    if (error) {
+      callback(error, null);
+    } else {
+      data.stories.length = 4;
+      const formattedStories = formatStories(data);
+      const finalData = [];
+    }
+  });
 };
 
 getStories([[1464480000, 0]], 'explosion', (error, data, response) => {
