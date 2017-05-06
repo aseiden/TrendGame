@@ -3,15 +3,18 @@ const epoch = require('epoch.js');
 
 const formatStories = require('./aylienApiDataFormatter');
 
-const getStories = (peaks, queryString, callback) => {
+const getStories = (queryString, peaks, callback) => {
 
   // Format date query for API
+  // 604800000 is 1 week in milliseconds
   const peakDate = new Date(peaks[0][0] * 1000);
+  const peakEndDate = new Date(peaks[0][0] * 1000 + 604800000);
   let formattedPeakDate = epoch(peakDate).format('YYYY[-]MM[-]DD[T]hh[:]mm[:]ss[Z]');
+  let formattedPeakEndDate = epoch(peakEndDate).format('YYYY[-]MM[-]DD[T]hh[:]mm[:]ss[Z]');
 
   // Establish API instance and supply credentials
   const apiInstance = new AylienNewsApi.DefaultApi();
-  
+
   let apiInfo;
   try {
     apiInfo = require('../lib/env/aylienApiKeys');
@@ -39,7 +42,7 @@ const getStories = (peaks, queryString, callback) => {
     'sortBy': 'source.links_in_count',
     'language': ['en'],
     'publishedAtStart': formattedPeakDate,
-    'publishedAtEnd': 'NOW', 
+    'publishedAtEnd': formattedPeakEndDate,
   };
 
   apiInstance.listStories(opts, (error, data, response) => {
@@ -52,7 +55,7 @@ const getStories = (peaks, queryString, callback) => {
       const formattedStories = formatStories(data);
       let finalData = [];
       finalData.push({
-        date: peaks[0][0],
+        date: peakDate,
         stories: formattedStories
       });
 
