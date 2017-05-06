@@ -46,19 +46,19 @@ const getStories = (peaks, queryString, callback) => {
     if (error) {
       callback(error, null);
     } else {
+      // 4 chosen so we display 4 stories under the graph.  Not ideal to have this hard coded here, but MVP!
+      // Ideally we only query for 4, but I haven't been able to find a limit query parameter.
       data.stories.length = 4;
       const formattedStories = formatStories(data);
-      const finalData = [];
+      let finalData = [];
+      finalData.push({
+        date: peaks[0][0],
+        stories: formattedStories
+      });
+
+      callback(null, finalData);
     }
   });
 };
-
-getStories([[1464480000, 0]], 'explosion', (error, data, response) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('this is the respons data!!!', data);
-  }
-});
 
 module.exports = getStories;
