@@ -16,7 +16,7 @@ const makeTimeline = (searchString, callback) => {
         } else {
           const timeline = makeFinalData(timeSeries, peakStories);
 
-          callback(timeline);
+          callback(null, timeline);
         }
       });
     }
