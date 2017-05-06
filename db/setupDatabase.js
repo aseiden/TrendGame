@@ -1,12 +1,12 @@
 //set up the database if not exist
-var serverUrl = '127.0.0.1';
-var connection = {
+const serverUrl = 'URL to go here!';
+const connection = {
   host: serverUrl,
   user: 'root',
   password: '',
   charset: 'utf8'
 };
-var knex = require('knex')({
+let knex = require('knex')({
   client: 'mysql',
   connection: connection,
   useNullAsDefault: true
