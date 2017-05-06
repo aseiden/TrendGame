@@ -1,5 +1,5 @@
 //set up the database if not exist
-const serverUrl = 'URL to go here!';
+const serverUrl = 'URL HERE';
 const connection = {
   host: serverUrl,
   user: 'root',
