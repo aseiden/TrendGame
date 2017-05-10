@@ -1,6 +1,18 @@
-var knex = require('./setupDatabase.js');
-var db = require('bookshelf')(knex);
-db.knex.schema.hasTable('trends').then(function (exists) {
+// var knex = require('./setupDatabase.js');
+var db = require('knex')({
+  client: 'pg',
+  connection: {
+    host: 'ec2-54-163-236-33.compute-1.amazonaws.com',
+    user: 'xuqmjoljxsgyig',
+    password: '4fea8d64593a9d82b3730454d26dd73cfadc89304e60e6a049303f4afba3fb17',
+    database: 'dfqkhh2tul4ekl',
+    ssl: true
+  }
+});
+
+console.log(db);
+
+db.schema.hasTable('trends').then(function (exists) {
   if (!exists) {
     db.knex.schema.createTable('trends', function (trend) {
       trend.increments('id').primary();
@@ -11,7 +23,7 @@ db.knex.schema.hasTable('trends').then(function (exists) {
     });
   }
 });
-db.knex.schema.hasTable('weeks').then(function (exists) {
+db.schema.hasTable('weeks').then(function (exists) {
   if (!exists) {
     db.knex.schema.createTable('weeks', function (week) {
       week.increments('id').primary();
@@ -24,7 +36,7 @@ db.knex.schema.hasTable('weeks').then(function (exists) {
     });
   }
 });
-db.knex.schema.hasTable('stories').then(function (exists) {
+db.schema.hasTable('stories').then(function (exists) {
   if (!exists) {
     db.knex.schema.createTable('stories', function (story) {
       story.increments('id').primary();
