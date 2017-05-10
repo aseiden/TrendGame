@@ -22,8 +22,6 @@ const getStories = (queryString, peaks, callback) => {
     apiInfo = {};
   }
 
-  console.log('THIS IS THE API INFO', apiInfo);
-
   let appId = apiInstance.apiClient.authentications['app_id'];
   if (process.env.AYLIEN_ID) {
     appId.apiKey = process.env.AYLIEN_ID;
