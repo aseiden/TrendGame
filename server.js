@@ -3,6 +3,7 @@ const trendQuery = require('./utilities/trendQuery');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const db = require('./db/config');
 
 const app = express();
 const IP = '127.0.0.1';
